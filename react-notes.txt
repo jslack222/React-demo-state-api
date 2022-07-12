@@ -1,0 +1,185 @@
+Notes 
+
+A history of react state: 
+
+Flux and Redux aren't part of React, they're seperate state libraries. Flux was used before redux in 
+2014 until everyone adopted Redux instead and has been the industry standard since. 
+
+State: 
+
+App data that may change over time.
+
+Side note: Enviorment variables 
+-store enviroment-specific settings
+-supported on all operating systems 
+-built into create-react-app
+ - REACT_APP_BASE_URL
+ - REACT_APP_ENABLE_FEATURE_X
+
+8 different ways to handle state. 
+
+Option 1: URL
+
+Current App location/settings
+- current item 
+- filters 
+- pagination 
+-sorting 
+Supports deep linking 
+Avoid redundantly storing in your app
+Consider React Router
+
+Option 2: Web Storage 
+
+Persist state between reloads 
+- cokkies, localStorage, IndexedDB 
+
+Watch out 
+- tied to a single browser 
+- avoide storing sensitive data 
+
+Examples 
+- items in a shopping cart 
+
+Option 3: Local State 
+
+Store state inside a React component 
+- usefule when one component needs it 
+
+Example 
+- forms 
+- toggles 
+
+Option 4: Lifted State 
+
+Lift state to a common parent 
+- declare state in a parent component
+- pass state down via props 
+
+Use: related components need same state 
+
+Option 5: Derived State 
+
+Derive state from existing state/props 
+
+Examples
+-call .length on an array in render 
+- derive errosExist by checking if the errors array is empty. 
+
+Why Derive? 
+-avoids out of sync bugs 
+-simplifies code 
+
+Option 6: Refs 
+
+1. DOM reference 
+-uncontrolled components 
+-interfacing with non-react libraries
+
+2. State that isn't displayed 
+-track if component is mounted 
+-hold timeer 
+-store previous state value
+
+Option 7: Context 
+
+Global/ broadly used state and functions
+- avoides prop drilling 
+
+Examples 
+-logged in user 
+-authorization settings 
+- theming 
+- internationalization settings 
+
+Option 8: Third Party State 
+
+General Options 
+-Redux 
+-Mobx 
+-Recoil 
+
+Remote State 
+-react-query 
+-Swr 
+-Relay
+- Apollo
+
+JavaScript Data Structures 
+
+primitives <------immutable 
+
+Booleans | true/false
+strings | text
+numbers | numbers
+Bit Int | big numbers 
+Symbol | unique id 
+
+Collections <-------mutable reference 
+
+objects | properites
+array | list
+map | key/value pairs
+set | unique values
+
+In react, we should treat state as immutable.
+
+Go to build a shoe store app 
+
+Rules of Hooks 
+
+Only are for function components 
+- can be consumed in classes too 
+Start with "use" 
+Only call them at the top level (not in nested functions)
+-consistant order 
+-can't be called inside functions, conditionals, or loops
+React tracks the order that hooks are run so it can store their corresponding data.
+
+Need to run a hook conditionally? 
+- place condition inside the hook
+
+Synthetic Events 
+
+similar to browser native event system 
+assures events operate consistently cross-browser 
+improves peformance 
+
+Event handlers 
+
+onClick 
+onChange 
+onHover 
+onBlur 
+onSubmit 
+onMouseover
+etc....
+
+React events are camel-cased 
+
+When does React Render? 
+
+During a state change, prop change, parent renders or when context changes. 
+When state changes, the component renders, which causes derived state to be 
+reacalculated.
+So derived state can't get out of sync. Its's recalculated on each render.
+
+On state change you can skip render via: shouldCompenentUpdateReact.memo 
+On prop change & parent renders you can skip render via shouldCompenentUpdateReact.memoPureComponent
+Both are rarely necessary tho. 
+
+4 Ways to Handle API Calls 
+
+1. Inline - call fetch/axios/etc in your component- not recommended because inline calls are hard 
+to handle consistently across the app. Calls like this can't be reused because they are embedded in a 
+single component.
+2. Centralized functions - call seperate function - is what we are doing in app.js 
+3. custom hook - create and call your own custom hook - we will do this later in this module 
+4. Library - call library(react-query, swr, etc) - We will do this in the final module
+
+React Router 
+-most popular react router 
+-not part of react 
+ - seperate open source project 
+-fast, declarative client-side routing 
+- we will use react router 6 - the latest version
